@@ -1,6 +1,7 @@
 ﻿Translates by Google
 
 Rotate6SidedSkybox.shader is a Shader that rotates the Skybox.
+It is suitable for reproducing the sky like the real world, such as rotating the starry sky and the sun, with Skybox.
 As shown in the image, X-axis rotation, Y-axis rotation and Z-axis rotation are possible.
 It can also be rotated by a combination of X & Y axis rotation and X & Y & Z axis rotation.
 You can also specify the rotation speed and rotation angle in the initial state (immediately after loading the world in VRChat).
@@ -31,12 +32,14 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [Change Logs]
+2019/04/30 ver1.02 Fine Tuning And Optimization
 2019/04/22 ver1.01 Change The Displayed Shader Name On Unity
 2019/04/xx ver1.00
 
 
 
 [Contact Information]
+GitHub : https://github.com/Guilty-VRChat/OriginalShader
 Twitter : guilty_vrchat
 Mail : guilty0546@gmail
 
