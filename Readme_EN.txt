@@ -1,4 +1,4 @@
-﻿Translates by Google
+﻿Translates by Google and DeepL
 
 Rotate6SidedSkybox.shader is a Shader that rotates the Skybox.
 It is suitable for reproducing the sky like the real world, such as rotating the starry sky and the sun, with Skybox.
@@ -9,8 +9,8 @@ You can also specify the rotation speed, rotation angle in the initial state (im
 
 
 [Contents List]
-・UnityPackage File (RotateSkybox_1.10.unitypackage)
-・PNG File (Thumbnail.png)
+・UnityPackage File (RotateSkybox_2.00.unitypackage)
+・PNG File (Thumbnail.png, Thumbnail2.png)
 ・TXT Files (Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
 
@@ -22,16 +22,17 @@ MIT License
 
 [How to Use]
 1.Select as a Shader of the material used for Skybox
-2.Adjust parameters such as ?-Axis Rotation Speed, ?-Axis Default Degree, and ?-Directional Inversion
+2.Adjust parameters such as Rotation and Speed
 
 
 
 [Assumed Operating Environment]
-Unity 2017.4.28f1 (64-bit)
+Unity 2019.4.29f1 (64-bit)
 
 
 
 [Change Logs]
+2021/08/09 ver2.00 Add A Inspector, Refactoring, Add A Thumbnail, Update A Thumbnail, Upgrade Unity Version
 2020/01/05 ver1.10 Fine Tuning
 2020/01/05 ver1.09 Fine Tuning
 2020/01/04 ver1.08 Abolish ?-Directional Inversion And Set Rotation Speed Range From -100 To 100
@@ -48,10 +49,9 @@ Unity 2017.4.28f1 (64-bit)
 
 [Contact Information]
 GitHub : https://github.com/GuiltyWorks
-Twitter : https://twitter.com/GuiltyWorks
-Mail : guilty0546@gmail
+Twitter : @GuiltyWorks_VRC
+EMail : guiltyworks@protonmail.com
 
 
 
-
-Copyright (c) 2020 Guilty
+Copyright (c) 2021 Guilty

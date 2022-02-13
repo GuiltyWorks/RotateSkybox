@@ -7,8 +7,8 @@ X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることも
 
 
 [内容一覧]
-・UnityPackageファイル(RotateSkybox_v1.10.unitypackage)
-・PNGファイル(Thumbnail.png)
+・UnityPackageファイル(RotateSkybox_v2.00.unitypackage)
+・PNGファイル(Thumbnail.png, Thumbnail2.png)
 ・TXTファイル(Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
 
@@ -20,18 +20,19 @@ MITライセンス
 
 [使い方]
 1.Skyboxに使用するマテリアルのShaderとして選択する
-2.?-Axis Rotation Speedや?-Axis Default Degreeや?-Directional Inversionなどのパラメーターを調整する
-  ?-Axis Rotation Speed : ?軸回転速度
-  ?-Axis Default Degree : 初期?軸回転角度
+2.RotationやSpeedなどのパラメーターを調整する
+  Rotation : Skyboxのデフォルトの回転角度
+  Speed : Skyboxの回転速度
 
 
 
 [動作想定環境]
-Unity 2017.4.28f1 (64-bit)
+Unity 2019.4.29f1 (64-bit)
 
 
 
 [更新履歴]
+2021/08/09 ver2.00 インスペクターの追加、リファクタリング、サムネイルの追加と更新、Unityのバージョンアップ
 2020/01/05 ver1.10 微調整
 2020/01/05 ver1.09 微調整
 2020/01/04 ver1.08 回転方向反転機能を廃止、回転スピードを-100から100に設定
@@ -48,10 +49,10 @@ Unity 2017.4.28f1 (64-bit)
 
 [連絡先]
 GitHub : https://github.com/GuiltyWorks
-Twitter : https://twitter.com/GuiltyWorks
-Mail : guilty0546@gmail
+Twitter : @GuiltyWorks_VRC
+EMail : guiltyworks@protonmail.com
 
 
 
 
-Copyright (c) 2020 Guilty
+Copyright (c) 2021 Guilty
