@@ -9,7 +9,7 @@ You can also specify the rotation speed, rotation angle in the initial state (im
 
 
 [Contents List]
-・UnityPackage File (RotateSkybox_1.09.unitypackage)
+・UnityPackage File (RotateSkybox_1.10.unitypackage)
 ・PNG File (Thumbnail.png)
 ・TXT Files (Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -32,6 +32,7 @@ Unity 2017.4.28f1 (64-bit)
 
 
 [Change Logs]
+2020/01/05 ver1.10 Fine Tuning
 2020/01/05 ver1.09 Fine Tuning
 2020/01/04 ver1.08 Abolish ?-Directional Inversion And Set Rotation Speed Range From -100 To 100
 2019/07/27 ver1.07 Change To Local Coordinate Axis Rotation And Convert Assets Into UnityPackage
