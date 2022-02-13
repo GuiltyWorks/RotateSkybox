@@ -9,7 +9,7 @@ You can also specify the rotation speed, rotation angle in the initial state (im
 
 
 [Contents List]
-・Shader File (Rotate6SidedSkybox.shader, RotateCubedSkybox.shader)
+・UnityPackage File (RotateSkybox_1.07.unitypackage)
 ・PNG File (Thumbnail.png)
 ・TXT Files (Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -22,16 +22,17 @@ MIT License
 
 [How to Use]
 1.Select as a Shader of the material used for Skybox
-2.Adjust parameters such as ?-Axis Rotation, ?-Axis Rotation Speed, ?-Axis Default Degree, and ?-Directional Inversion
+2.Adjust parameters such as ?-Axis Rotation Speed, ?-Axis Default Degree, and ?-Directional Inversion
 
 
 
 [Assumed Operating Environment]
-Unity 2017.4.15f1 (64-bit)
+Unity 2017.4.28f1 (64-bit)
 
 
 
 [Change Logs]
+2019/07/27 ver1.07 Change To Local Coordinate Axis Rotation And Convert Assets Into UnityPackage
 2019/06/07 ver1.06 Add RotateCubedSkybox.shader
 2019/05/24 ver1.05 Bug Fix
 2019/05/22 ver1.04 Bug Fix And Update Explanatory Text and [How to Use]
@@ -44,7 +45,7 @@ Unity 2017.4.15f1 (64-bit)
 
 [Contact Information]
 GitHub : https://github.com/Guilty-VRChat/OriginalShader
-Twitter : guilty_vrchat
+Twitter : https://twitter.com/guilty_vrchat
 Mail : guilty0546@gmail
 
 
