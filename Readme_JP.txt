@@ -7,7 +7,7 @@ X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることも
 
 
 [内容一覧]
-・UnityPackageファイル(RotateSkybox_v1.07.unitypackage)
+・UnityPackageファイル(RotateSkybox_v1.08.unitypackage)
 ・PNGファイル(Thumbnail.png)
 ・TXTファイル(Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -23,7 +23,6 @@ MITライセンス
 2.?-Axis Rotation Speedや?-Axis Default Degreeや?-Directional Inversionなどのパラメーターを調整する
   ?-Axis Rotation Speed : ?軸回転速度
   ?-Axis Default Degree : 初期?軸回転角度
-  ?-Directional Inversion : ?軸回転方向の反転
 
 
 
@@ -33,6 +32,7 @@ Unity 2017.4.28f1 (64-bit)
 
 
 [更新履歴]
+2020/01/04 ver1.08 回転方向反転機能を廃止、回転スピードを-100から100に設定
 2019/07/27 ver1.07 ローカル座標軸回転に変更、アセットをUnityPackage化
 2019/06/07 ver1.06 RotateCubedSkybox.shaderを追加
 2019/05/24 ver1.05 バグの修正
@@ -46,10 +46,10 @@ Unity 2017.4.28f1 (64-bit)
 
 [連絡先]
 GitHub : https://github.com/Guilty-VRChat/OriginalShader
-Twitter : https://twitter.com/guilty_vrchat
+Twitter : https://twitter.com/GuiltyWorks
 Mail : guilty0546@gmail
 
 
 
 
-Copyright (c) 2019 Guilty
+Copyright (c) 2020 Guilty
