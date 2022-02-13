@@ -2,7 +2,7 @@
 星空や太陽を回転させるなど、現実世界のような空をSkyboxで再現することに適しています。
 画像の通り、X軸回転、Y軸回転、Z軸回転ができます。
 X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることもできます。
-回転速度や初期状態(VRChatにおけるワールド読み込み直後)の回転角度の指定もできます。
+回転速度や初期状態(VRChatにおけるワールド読み込み直後)の回転角度や回転方向の指定もできます。
 
 
 
@@ -20,7 +20,11 @@ MITライセンス
 
 [使い方]
 1.Skyboxに使用するマテリアルのShaderとして選択する
-2.X-Axis RotationやX-Axis Rotation SpeedやX-Axis Default Degreeなどのパラメーターを調整する
+2.?-Axis Rotationや?-Axis Rotation Speedや?-Axis Default Degreeや?-Directional Inversionなどのパラメーターを調整する
+  ?-Axis Rotation : ?軸回転のオン/オフ
+  ?-Axis Rotation Speed : ?軸回転速度
+  ?-Axis Default Degree : 初期?軸回転角度
+  ?-Directional Inversion : ?軸回転方向の反転
 
 
 
@@ -30,6 +34,7 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [更新履歴]
+2019/05/22 ver1.04 Skyboxが回転しないバグの修正、Readmeの更新
 2019/05/01 ver1.03 微調整及び最適化
 2019/04/30 ver1.02 微調整及び最適化
 2019/04/22 ver1.01 Unity上で表示されるShader名の変更

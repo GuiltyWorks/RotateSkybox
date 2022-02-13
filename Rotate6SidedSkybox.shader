@@ -2,19 +2,22 @@
 // MIT License
 // GitHub : https://github.com/Guilty-VRChat/OriginalShader
 // Twitter : guilty_vrchat
-// Gmail : guilty0546@gmail.com
+// Gmail : guilty0546@gmail.com directional inversion
 
 Shader "Guilty/Rotate6SidedSkybox" {
     Properties {
         [Toggle(XAR)] _XAxisRotation ("X-Axis Rotation", float) = 0
         [Toggle(YAR)] _YAxisRotation ("Y-Axis Rotation", float) = 0
         [Toggle(ZAR)] _ZAxisRotation ("Z-Axis Rotation", float) = 0
-        _XRotationSpeed ("X-Axis Rotation Speed", Range(0, 100)) = 1
+        _XRotationSpeed ("X-Axis Rotation Speed", Range(0, 100)) = 5
         _XDefaultDegree ("X-Axis Default Degree", Range(0, 360)) = 0
-        _YRotationSpeed ("Y-Axis Rotation Speed", Range(0, 100)) = 1
+        [Toggle] _XDirectionalInversion("X-Directional Inversion", float) = 0
+        _YRotationSpeed ("Y-Axis Rotation Speed", Range(0, 100)) = 5
         _YDefaultDegree ("Y-Axis Default Degree", Range(0, 360)) = 0
-        _ZRotationSpeed ("Z-Axis Rotation Speed", Range(0, 100)) = 1
+        [Toggle] _YDirectionalInversion("Y-Directional Inversion", float) = 0
+        _ZRotationSpeed ("Z-Axis Rotation Speed", Range(0, 100)) = 5
         _ZDefaultDegree ("Z-Axis Default Degree", Range(0, 360)) = 0
+        [Toggle] _ZDirectionalInversion("Z-Directional Inversion", float) = 0
         _Tint ("Tint Color", Color) = (.5, .5, .5, .5)
         [Gamma] _Exposure ("Exposure", Range(0, 8)) = 1.0
         [NoScaleOffset] _FrontTex ("Front [+Z]   (HDR)", 2D) = "grey" {}
@@ -30,10 +33,12 @@ Shader "Guilty/Rotate6SidedSkybox" {
         Cull Off ZWrite Off
 
         CGINCLUDE
+
+        #pragma multi_compile XAR YAR ZAR
+
         #include "UnityCG.cginc"
 
-        //float _XAxisRotation, _YAxisRotation, _ZAxisRotation;
-        float _XRotationSpeed, _XDefaultDegree, _YRotationSpeed, _YDefaultDegree, _ZRotationSpeed, _ZDefaultDegree;
+        float _XRotationSpeed, _XDefaultDegree, _XDirectionalInversion, _YRotationSpeed, _YDefaultDegree, _YDirectionalInversion, _ZRotationSpeed, _ZDefaultDegree, _ZDirectionalInversion;
         half4 _Tint;
         half _Exposure;
 
@@ -50,31 +55,15 @@ Shader "Guilty/Rotate6SidedSkybox" {
         };
 
         v2f vert(appdata_t v) {
-            #ifdef XAR
-                v.vertex.zy = float2(((v.vertex.z * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0))));
-            #endif
+            //#ifdef XAR
+                v.vertex.zy = float2(((v.vertex.z * cos(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0))));
+            //#endif
             #ifdef YAR
-                v.vertex.xz = float2(((v.vertex.x * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0))));
+                v.vertex.xz = float2(((v.vertex.x * cos(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0))));
             #endif
             #ifdef ZAR
-                v.vertex.yx = float2(((v.vertex.y * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0))));
+                v.vertex.yx = float2(((v.vertex.y * cos(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0))));
             #endif
-
-            /*float alpha = ((_Time.x * 2 * _XRotationSpeed * _XAxisRotation) + _XDefaultDegree) * UNITY_PI / 180.0;
-            float sina, cosa;
-            sincos(alpha, sina, cosa);
-            float2x2 m = float2x2(cosa, -sina, sina, cosa);
-            v.vertex.yz = float2(mul(m, v.vertex.yz));
-
-            alpha = ((_Time.x * 2 * _YRotationSpeed * _YAxisRotation) + _YDefaultDegree) * UNITY_PI / 180.0;
-            sincos(alpha, sina, cosa);
-            m = float2x2(cosa, -sina, sina, cosa);
-            v.vertex.xz = float2(mul(m, v.vertex.xz));
-
-            alpha = ((_Time.x * 2 * _ZRotationSpeed * _ZAxisRotation) + _ZDefaultDegree) * UNITY_PI / 180.0;
-            sincos(alpha, sina, cosa);
-            m = float2x2(cosa, -sina, sina, cosa);
-            v.vertex.xy = float2(mul(m, v.vertex.xy));*/
 
             v2f o;
             UNITY_SETUP_INSTANCE_ID(v);

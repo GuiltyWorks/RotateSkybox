@@ -4,7 +4,7 @@ Rotate6SidedSkybox.shader is a Shader that rotates the Skybox.
 It is suitable for reproducing the sky like the real world, such as rotating the starry sky and the sun, with Skybox.
 As shown in the image, X-axis rotation, Y-axis rotation and Z-axis rotation are possible.
 It can also be rotated by a combination of X & Y axis rotation and X & Y & Z axis rotation.
-You can also specify the rotation speed and rotation angle in the initial state (immediately after loading the world in VRChat).
+You can also specify the rotation speed, rotation angle in the initial state (immediately after loading the world in VRChat) and direction of rotation.
 
 
 
@@ -22,7 +22,7 @@ MIT License
 
 [How to Use]
 1.Select as a Shader of the material used for Skybox
-2.Adjust parameters such as X-Axis Rotation, X-Axis Rotation Speed ​​and X-Axis Default Degree
+2.Adjust parameters such as ?-Axis Rotation, ?-Axis Rotation Speed, ?-Axis Default Degree, and ?-Directional Inversion
 
 
 
@@ -32,6 +32,7 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [Change Logs]
+2019/05/22 ver1.04 Bug Fix And Update Readme
 2019/05/01 ver1.03 Fine Tuning And Optimization
 2019/04/30 ver1.02 Fine Tuning And Optimization
 2019/04/22 ver1.01 Change The Displayed Shader Name On Unity
