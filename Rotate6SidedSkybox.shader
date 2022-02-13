@@ -1,7 +1,7 @@
 // Copyright (c) 2019 Guilty
 // MIT License
 // GitHub : https://github.com/Guilty-VRChat/OriginalShader
-// Twitter : guilty_vrchat
+// Twitter : https://twitter.com/guilty_vrchat
 // Gmail : guilty0546@gmail.com directional inversion
 
 Shader "Guilty/Rotate6SidedSkybox" {

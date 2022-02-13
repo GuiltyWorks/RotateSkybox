@@ -9,7 +9,7 @@ You can also specify the rotation speed, rotation angle in the initial state (im
 
 
 [Contents List]
-・Shader File (Rotate6SidedSkybox.shader)
+・Shader File (Rotate6SidedSkybox.shader, RotateCubedSkybox.shader)
 ・PNG File (Thumbnail.png)
 ・TXT Files (Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -32,6 +32,7 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [Change Logs]
+2019/06/07 ver1.06 Add RotateCubedSkybox.shader
 2019/05/24 ver1.05 Bug Fix
 2019/05/22 ver1.04 Bug Fix And Update Explanatory Text and [How to Use]
 2019/05/01 ver1.03 Fine Tuning And Optimization

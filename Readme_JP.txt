@@ -7,7 +7,7 @@ X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることも
 
 
 [内容一覧]
-・Shaderファイル(Rotate6SidedSkybox.shader)
+・Shaderファイル(Rotate6SidedSkybox.shader, RotateCubedSkybox.shader)
 ・PNGファイル(Thumbnail.png)
 ・TXTファイル(Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -34,6 +34,7 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [更新履歴]
+2019/06/07 ver1.06 RotateCubedSkybox.shaderを追加
 2019/05/24 ver1.05 バグの修正
 2019/05/22 ver1.04 Skyboxが回転しないバグの修正、説明文と[使い方]の更新
 2019/05/01 ver1.03 微調整及び最適化
