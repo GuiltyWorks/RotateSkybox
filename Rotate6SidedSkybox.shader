@@ -49,22 +49,15 @@ Shader "Guilty/Rotate6SidedSkybox" {
             UNITY_VERTEX_OUTPUT_STEREO
         };
 
-        v2f vert (appdata_t v) {
-            float temp;
+        v2f vert(appdata_t v) {
             #ifdef XAR
-                temp = v.vertex.z;
-                v.vertex.z = (v.vertex.z * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)));
-                v.vertex.y = (temp * sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0));
+                v.vertex.zy = float2(((v.vertex.z * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.x * 2 * _XRotationSpeed) + _XDefaultDegree) * UNITY_PI / 180.0))));
             #endif
             #ifdef YAR
-                temp = v.vertex.x;
-                v.vertex.x = (v.vertex.x * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)));
-                v.vertex.z = (temp * sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0));
+                v.vertex.xz = float2(((v.vertex.x * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.x * 2 * _YRotationSpeed) + _YDefaultDegree) * UNITY_PI / 180.0))));
             #endif
             #ifdef ZAR
-                temp = v.vertex.y;
-                v.vertex.y = (v.vertex.y * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)));
-                v.vertex.x = (temp * sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0));
+                v.vertex.yx = float2(((v.vertex.y * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.x * 2 * _ZRotationSpeed) + _ZDefaultDegree) * UNITY_PI / 180.0))));
             #endif
 
             /*float alpha = ((_Time.x * 2 * _XRotationSpeed * _XAxisRotation) + _XDefaultDegree) * UNITY_PI / 180.0;
@@ -91,7 +84,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             return o;
         }
 
-        half4 skybox_frag (v2f i, sampler2D smp, half4 smpDecode) {
+        half4 skybox_frag(v2f i, sampler2D smp, half4 smpDecode) {
             half4 tex = tex2D (smp, i.texcoord);
             half3 c = DecodeHDR (tex, smpDecode);
             c = c * _Tint.rgb * unity_ColorSpaceDouble.rgb;
@@ -108,7 +101,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _FrontTex;
             half4 _FrontTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_FrontTex, _FrontTex_HDR);
             }
             ENDCG
@@ -120,7 +113,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _BackTex;
             half4 _BackTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_BackTex, _BackTex_HDR);
             }
             ENDCG
@@ -132,7 +125,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _LeftTex;
             half4 _LeftTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_LeftTex, _LeftTex_HDR);
             }
             ENDCG
@@ -144,7 +137,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _RightTex;
             half4 _RightTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_RightTex, _RightTex_HDR);
             }
             ENDCG
@@ -156,7 +149,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _UpTex;
             half4 _UpTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_UpTex, _UpTex_HDR);
             }
             ENDCG
@@ -168,7 +161,7 @@ Shader "Guilty/Rotate6SidedSkybox" {
             #pragma target 3.0
             sampler2D _DownTex;
             half4 _DownTex_HDR;
-            half4 frag (v2f i) : SV_Target {
+            half4 frag(v2f i) : SV_Target {
                 return skybox_frag(i,_DownTex, _DownTex_HDR);
             }
             ENDCG
