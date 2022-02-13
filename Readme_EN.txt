@@ -32,7 +32,8 @@ Unity 2017.4.15f1 (64-bit)
 
 
 [Change Logs]
-2019/05/22 ver1.04 Bug Fix And Update Readme
+2019/05/24 ver1.05 Bug Fix
+2019/05/22 ver1.04 Bug Fix And Update Explanatory Text and [How to Use]
 2019/05/01 ver1.03 Fine Tuning And Optimization
 2019/04/30 ver1.02 Fine Tuning And Optimization
 2019/04/22 ver1.01 Change The Displayed Shader Name On Unity

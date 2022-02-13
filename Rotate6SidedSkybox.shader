@@ -11,13 +11,13 @@ Shader "Guilty/Rotate6SidedSkybox" {
         [Toggle(ZAR)] _ZAxisRotation ("Z-Axis Rotation", float) = 0
         _XRotationSpeed ("X-Axis Rotation Speed", Range(0, 100)) = 5
         _XDefaultDegree ("X-Axis Default Degree", Range(0, 360)) = 0
-        [Toggle] _XDirectionalInversion("X-Directional Inversion", float) = 0
+        [Toggle(XDI)] _XDirectionalInversion("X-Directional Inversion", float) = 0
         _YRotationSpeed ("Y-Axis Rotation Speed", Range(0, 100)) = 5
         _YDefaultDegree ("Y-Axis Default Degree", Range(0, 360)) = 0
-        [Toggle] _YDirectionalInversion("Y-Directional Inversion", float) = 0
+        [Toggle(YDI)] _YDirectionalInversion("Y-Directional Inversion", float) = 0
         _ZRotationSpeed ("Z-Axis Rotation Speed", Range(0, 100)) = 5
         _ZDefaultDegree ("Z-Axis Default Degree", Range(0, 360)) = 0
-        [Toggle] _ZDirectionalInversion("Z-Directional Inversion", float) = 0
+        [Toggle(ZDI)] _ZDirectionalInversion("Z-Directional Inversion", float) = 0
         _Tint ("Tint Color", Color) = (.5, .5, .5, .5)
         [Gamma] _Exposure ("Exposure", Range(0, 8)) = 1.0
         [NoScaleOffset] _FrontTex ("Front [+Z]   (HDR)", 2D) = "grey" {}
@@ -34,11 +34,16 @@ Shader "Guilty/Rotate6SidedSkybox" {
 
         CGINCLUDE
 
-        #pragma multi_compile XAR YAR ZAR
+        #pragma multi_compile _ XAR
+        #pragma multi_compile _ YAR
+        #pragma multi_compile _ ZAR
+        #pragma multi_compile _ XDI
+        #pragma multi_compile _ YDI
+        #pragma multi_compile _ ZDI
 
         #include "UnityCG.cginc"
 
-        float _XRotationSpeed, _XDefaultDegree, _XDirectionalInversion, _YRotationSpeed, _YDefaultDegree, _YDirectionalInversion, _ZRotationSpeed, _ZDefaultDegree, _ZDirectionalInversion;
+        float _XRotationSpeed, _XDefaultDegree, _YRotationSpeed, _YDefaultDegree, _ZRotationSpeed, _ZDefaultDegree;
         half4 _Tint;
         half _Exposure;
 
@@ -55,15 +60,27 @@ Shader "Guilty/Rotate6SidedSkybox" {
         };
 
         v2f vert(appdata_t v) {
-            //#ifdef XAR
-                v.vertex.zy = float2(((v.vertex.z * cos(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.y * cos(_XDirectionalInversion * UNITY_PI) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0))));
-            //#endif
-            #ifdef YAR
-                v.vertex.xz = float2(((v.vertex.x * cos(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.y * cos(_YDirectionalInversion * UNITY_PI) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0))));
-            #endif
-            #ifdef ZAR
-                v.vertex.yx = float2(((v.vertex.y * cos(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.y * cos(_ZDirectionalInversion * UNITY_PI) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0))));
-            #endif
+     		#ifdef XAR
+     			#ifdef XDI
+	               	v.vertex.zy = float2(((v.vertex.z * cos(((_Time.y * (-1) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.y * (-1) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.y * (-1) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.y * (-1) * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0))));
+	           	#else
+	           		v.vertex.zy = float2(((v.vertex.z * cos(((_Time.y * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * (-sin(((_Time.y * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.z * sin(((_Time.y * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.y * cos(((_Time.y * (1 - cos(_XRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _XDefaultDegree) * UNITY_PI / 180.0))));
+            	#endif
+			#endif
+           	#ifdef YAR
+           		#ifdef YDI
+	               	v.vertex.xz = float2(((v.vertex.x * cos(((_Time.y * (-1) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.y * (-1) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.y * (-1) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.y * (-1) * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0))));
+    	       	#else
+	               	v.vertex.xz = float2(((v.vertex.x * cos(((_Time.y * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * (-sin(((_Time.y * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.x * sin(((_Time.y * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.z * cos(((_Time.y * (1 - cos(_YRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _YDefaultDegree) * UNITY_PI / 180.0))));
+   	        	#endif
+   	        #endif
+           	#ifdef ZAR
+           		#ifdef ZDI
+	               	v.vertex.yx = float2(((v.vertex.y * cos(((_Time.y * (-1) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.y * (-1) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.y * (-1) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.y * (-1) * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0))));
+    	       	#else
+	               	v.vertex.yx = float2(((v.vertex.y * cos(((_Time.y * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * (-sin(((_Time.y * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)))), ((v.vertex.y * sin(((_Time.y * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0)) + (v.vertex.x * cos(((_Time.y * (1 - cos(_ZRotationSpeed / 100 * UNITY_PI / 2)) * 360) + _ZDefaultDegree) * UNITY_PI / 180.0))));
+    	       	#endif
+			#endif
 
             v2f o;
             UNITY_SETUP_INSTANCE_ID(v);
