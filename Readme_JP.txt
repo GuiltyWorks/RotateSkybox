@@ -1,4 +1,4 @@
-﻿Skyboxを回転させるShaderです。
+Skyboxを回転させるShaderです。
 星空や太陽を回転させるなど、現実世界のような空をSkyboxで再現することに適しています。
 画像の通り、X軸回転、Y軸回転、Z軸回転ができます。
 X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることもできます。
@@ -7,7 +7,7 @@ X&Y軸回転やX&Y&Z軸回転などの組み合わせで回転させることも
 
 
 [内容一覧]
-・UnityPackageファイル(RotateSkybox_v2.00.unitypackage)
+・UnityPackageファイル(RotateSkybox_v2.01.unitypackage)
 ・PNGファイル(Thumbnail.png, Thumbnail2.png)
 ・TXTファイル(Readme_JP.txt, Readme_EN.txt, LICENSE.txt)
 
@@ -27,11 +27,12 @@ MITライセンス
 
 
 [動作想定環境]
-Unity 2019.4.29f1 (64-bit)
+Unity 2019.4.31f1 (64-bit)
 
 
 
 [更新履歴]
+2022/03/28 ver2.01 シングルパスインスタンシングレンダリングに対応、サンプル画像の変更、Unityのバージョンアップ
 2021/08/09 ver2.00 インスペクターの追加、リファクタリング、サムネイルの追加と更新、Unityのバージョンアップ
 2020/01/05 ver1.10 微調整
 2020/01/05 ver1.09 微調整
@@ -54,5 +55,4 @@ EMail : guiltyworks@protonmail.com
 
 
 
-
-Copyright (c) 2021 Guilty
+Copyright (c) 2022 Guilty
